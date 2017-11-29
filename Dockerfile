@@ -1,5 +1,4 @@
 # Start with Theano base image
-#FROM kaixhin/theano
 MAINTAINER Vijay Sharma <ivnyou.all@gmail.com>
 
 # Install optional dependencies
