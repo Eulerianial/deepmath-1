@@ -1,5 +1,24 @@
 # Start with Theano base image
+FROM ubuntu:14.04
 MAINTAINER Vijay Sharma <ivnyou.all@gmail.com>
+
+RUN apt-get update && apt-get install -y \
+  build-essential \
+  gfortran \
+  git \
+  wget \
+  liblapack-dev \
+  libopenblas-dev \
+  python-dev \
+  python-pip \
+  python-nose \
+  python-numpy \
+  python-scipy
+
+# Install bleeding-edge Theano
+RUN pip install --upgrade pip
+RUN pip install --upgrade six
+RUN pip install --upgrade --no-deps git+git://github.com/Theano/Theano.git
 
 # Install optional dependencies
 RUN apt-get update && apt-get install -y \
@@ -10,8 +29,8 @@ RUN apt-get update && apt-get install -y \
   python-yaml
 
 # Upgrade six
-RUN pip install --upgrade six
-RUN pip install --upgrade Theano
+# RUN pip install --upgrade six
+# RUN pip install --upgrade Theano
 
 # Clone Pylearn2 repo and move into it
 RUN cd /root && git clone https://github.com/lisa-lab/pylearn2.git && cd pylearn2 && \
